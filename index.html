@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luis Quintero — estudiante de Ingeniería de Software. Desarrollo web, aplicaciones móviles, bases de datos y arquitectura de software.">
+    <meta name="author" content="Luis Quintero">
+    <meta name="color-scheme" content="light dark">
+
+    <!-- Privacidad: no se envía la URL completa a GitHub/LinkedIn al pulsar sus enlaces -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-xfGVoDsklxISGvF/I8cKEgF5I8aeDhE7YtpPKhH68tw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+
+    <title>Luis Quintero | Ingeniero de Software</title>
+
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+
+    <!--
+        Fuentes autoalojadas en ./fonts — sin peticiones a Google ni a ningún
+        otro servidor externo (privacidad y RGPD). Ver la nota de fonts.css.
+    -->
+    <link rel="preload" as="font" type="font/woff2" href="fonts/Inter-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="fonts/InterTight-latin.woff2" crossorigin>
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        /* Se ejecuta antes del pintado para evitar el destello de tema (FOUC) */
+        (function () {
+            var d = document.documentElement;
+            d.classList.add('js');
+            try {
+                var t = localStorage.getItem('lq-theme');
+                if (t) d.setAttribute('data-theme', t);
+            } catch (e) { /* localStorage bloqueado */ }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <!-- =========================
+         EFECTOS DE AMBIENTE
+    ========================== -->
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="progress" aria-hidden="true">
+        <span class="progress__bar" data-progress></span>
+    </div>
+
+
+    <!-- =========================
+         NAVEGACIÓN
+    ========================== -->
+    <header class="header" data-header>
+        <div class="header__inner shell">
+
+            <a class="brand" href="#inicio" data-magnetic>
+                <img class="brand__logo" src="images/logo.svg" alt="Luis Quintero" width="120" height="40">
+            </a>
+
+            <nav class="nav" aria-label="Navegación principal">
+                <a class="nav__link" href="#perfil">Perfil</a>
+                <a class="nav__link" href="#areas">Áreas</a>
+                <a class="nav__link" href="#trayectoria">Trayectoria</a>
+                <a class="nav__link" href="#habilidades">Habilidades</a>
+                <a class="nav__link" href="#contacto">Contacto</a>
+                <span class="nav__indicator" data-nav-indicator aria-hidden="true"></span>
+            </nav>
+
+            <div class="header__tools">
+
+                <!-- Efectos de sonido (silenciables) -->
+                <button class="icon-toggle sound-toggle" type="button" data-sound-toggle
+                    aria-label="Desactivar los sonidos" aria-pressed="true">
+                    <svg class="sound-toggle__on" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z" />
+                        <path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2" />
+                        <path d="M18.2 6.4a7.8 7.8 0 0 1 0 11.2" />
+                    </svg>
+                    <svg class="sound-toggle__off" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z" />
+                        <path d="m16 10 4.5 4.5M20.5 10 16 14.5" />
+                    </svg>
+                </button>
+
+                <button class="icon-toggle theme-toggle" type="button" data-theme-toggle
+                    aria-label="Cambiar entre tema claro y oscuro" aria-pressed="false">
+                <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.2" />
+                    <path d="M12 2.4v2.2M12 19.4v2.2M4.2 12H2M22 12h-2.2M5.6 5.6 4 4M20 20l-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6" />
+                </svg>
+                <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7Z" />
+                    </svg>
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+
+    <main id="contenido">
+
+        <!-- =========================
+             PORTADA
+        ========================== -->
+        <section class="hero" id="inicio">
+            <div class="hero__aura" aria-hidden="true"></div>
+
+            <div class="shell hero__grid">
+
+                <div class="hero__text">
+
+                    <p class="eyebrow hero__item" style="--d:.05s">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        Disponible para proyectos y prácticas
+                    </p>
+
+                    <h1 class="hero__title">
+                        <span class="line">
+                            <span class="line__i split" data-split>Luis</span>
+                        </span>
+                        <span class="line">
+                            <span class="line__i split" data-split>Quintero</span>
+                        </span>
+                    </h1>
+
+                    <p class="hero__role hero__item" style="--d:.42s">
+                        Estudiante de <strong>Ingeniería de Software</strong> · Séptimo semestre
+                    </p>
+
+                    <p class="hero__lead hero__item" style="--d:.52s">
+                        Construyo software y me obsesiona comprender cómo se diseña:
+                        desde el modelo de datos hasta la última línea de la interfaz.
+                    </p>
+
+                    <div class="hero__actions hero__item" style="--d:.62s">
+                        <a class="btn btn--primary" href="#trayectoria" data-magnetic>
+                            Ver trayectoria
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17 17 7M9 7h8v8" />
+                            </svg>
+                        </a>
+                        <a class="btn btn--ghost" href="#contacto" data-magnetic>
+                            Hablemos
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Tarjeta de identidad -->
+                <aside class="id-card hero__item" style="--d:.3s" data-tilt data-spotlight>
+                    <div class="id-card__glow" aria-hidden="true"></div>
+
+                    <div class="id-card__top">
+                        <div class="monogram" aria-hidden="true">
+                            <span class="monogram__ring"></span>
+                            <img class="monogram__img" src="images/lq.png" alt="" width="66" height="66">
+                        </div>
+
+                        <div>
+                            <p class="id-card__name">Luis<br>Quintero</p>
+                            <p class="id-card__meta">Ingeniería de Software</p>
+                        </div>
+                    </div>
+
+                    <dl class="stats">
+                        <div class="stat">
+                            <dt class="stat__label">Edad</dt>
+                            <dd class="stat__value">
+                                <span data-count="21">0</span>
+                                <span class="stat__suffix">años</span>
+                            </dd>
+                        </div>
+                        <div class="stat">
+                            <dt class="stat__label">Áreas de proyecto</dt>
+                            <dd class="stat__value">
+                                <span data-count="4">0</span>
+                                <span class="stat__suffix">áreas</span>
+                            </dd>
+                        </div>
+                        <div class="stat">
+                            <dt class="stat__label">Semestre actual</dt>
+                            <dd class="stat__value">
+                                <span data-count="7">0</span>
+                                <span class="stat__suffix">°</span>
+                            </dd>
+                        </div>
+                    </dl>
+                </aside>
+
+            </div>
+
+            <a class="scroll-cue" href="#perfil" aria-label="Bajar a la sección de perfil" data-magnetic>
+                <span class="scroll-cue__text">Desliza</span>
+                <span class="scroll-cue__rail" aria-hidden="true">
+                    <span class="scroll-cue__dot"></span>
+                </span>
+            </a>
+        </section>
+
+
+        <!-- =========================
+             CINTA DE TECNOLOGÍAS
+             El texto se repite, pero en pantalla no se aprecia: el bucle
+             lo hace JavaScript desplazando y recycling palabra a palabra,
+             sin costura ni pausa. Ver initMarquee() en script.js.
+        ========================== -->
+        <div class="marquee" data-marquee>
+            <div class="marquee__track" data-marquee-track>
+                <span>Desarrollo web</span><span class="marquee__sep">·</span>
+                <span>Aplicaciones móviles</span><span class="marquee__sep">·</span>
+                <span>Bases de datos</span><span class="marquee__sep">·</span>
+                <span>Arquitectura de software</span><span class="marquee__sep">·</span>
+                <span>Análisis de datos</span><span class="marquee__sep">·</span>
+                <span>Nuevas tecnologías</span><span class="marquee__sep">·</span>
+            </div>
+        </div>
+
+
+        <!-- =========================
+             PERFIL
+    ========================== -->
+        <section class="section" id="perfil">
+            <div class="shell">
+
+                <header class="section__head">
+                    <p class="eyebrow" data-reveal><span class="eyebrow__num">01</span> Perfil</p>
+                    <h2 class="section__title" data-reveal style="--d:.06s">
+                        Un poco sobre <em>mí</em>
+                    </h2>
+                </header>
+
+                <div class="prose">
+                    <p class="prose__lead" data-reveal>
+                        Hola a todos. Mi nombre es Luis Quintero, tengo 21 años y soy
+                        estudiante de Ingeniería de Software, actualmente en séptimo semestre.
+                    </p>
+
+                    <p data-reveal style="--d:.06s">
+                        Me interesa especialmente el desarrollo de software y las nuevas tecnologías.
+                        Durante mi formación he trabajado en diferentes proyectos relacionados con
+                        aplicaciones móviles, desarrollo web, bases de datos y arquitectura de software,
+                        buscando no solo aprender las herramientas, sino también comprender cómo diseñar
+                        y construir soluciones útiles y bien estructuradas.
+                    </p>
+
+                    <p data-reveal style="--d:.06s">
+                        Uno de mis objetivos profesionales es seguir fortaleciendo mis conocimientos en el
+                        área de análisis de datos y desarrollo de software, mientras continúo adquiriendo
+                        experiencia mediante proyectos propios y académicos.
+                    </p>
+
+                    <blockquote class="quote" data-reveal="left" data-spotlight>
+                        <svg class="quote__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M9.6 5.4C6.2 6.9 4 9.9 4 13.4c0 3.3 1.9 5.2 4.2 5.2 2.1 0 3.6-1.5 3.6-3.5 0-1.9-1.3-3.3-3.1-3.3-.4 0-.8 0-1 .2.4-1.6 1.7-3.1 3.6-4.1l-1.7-2.5Zm9 0c-3.4 1.5-5.6 4.5-5.6 8 0 3.3 1.9 5.2 4.2 5.2 2.1 0 3.6-1.5 3.6-3.5 0-1.9-1.3-3.3-3.1-3.3-.4 0-.8 0-1 .2.4-1.6 1.7-3.1 3.6-4.1l-1.7-2.5Z" />
+                        </svg>
+                        <p>
+                            Me considero una persona curiosa, autodidacta y con interés por los retos
+                            técnicos. Disfruto aprender sobre nuevas tecnologías y encontrar la manera de
+                            convertir una idea en un proyecto funcional.
+                        </p>
+                    </blockquote>
+
+                    <p class="prose__closing" data-reveal>
+                        Espero seguir aprendiendo, compartir conocimientos con mis compañeros y aprovechar
+                        al máximo esta etapa de mi formación profesional.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             ÁREAS DE TRABAJO
+    ========================== -->
+        <section class="section section--alt" id="areas">
+            <div class="shell">
+
+                <header class="section__head">
+                    <p class="eyebrow" data-reveal><span class="eyebrow__num">02</span> Áreas</p>
+                    <h2 class="section__title" data-reveal style="--d:.06s">
+                        En qué <em>trabajo</em>
+                    </h2>
+                    <p class="section__desc" data-reveal style="--d:.12s">
+                        Cuatro frentes en los que he desarrollado proyectos durante mi formación.
+                    </p>
+                </header>
+
+                <div class="grid grid--4">
+
+                    <article class="tile" data-reveal style="--d:.04s" data-tilt data-spotlight>
+                        <div class="tile__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="6.5" y="2.5" width="11" height="19" rx="2.5" />
+                                <path d="M10.5 18.6h3" />
+                            </svg>
+                        </div>
+                        <h3 class="tile__title">Aplicaciones móviles</h3>
+                        <p class="tile__text">
+                            Diseño y construcción de apps cuidando la experiencia adaptable,
+                            el flujo y la claridad de cada pantalla.
+                        </p>
+                        <ul class="tags">
+                            <li>UI móvil</li>
+                            <li>UX</li>
+                            <li>Responsive</li>
+                        </ul>
+                    </article>
+
+                    <article class="tile" data-reveal style="--d:.1s" data-tilt data-spotlight>
+                        <div class="tile__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2.5" y="4" width="19" height="16" rx="2.5" />
+                                <path d="M2.5 9.2h19" />
+                                <path d="M5.8 6.6h.01M8.6 6.6h.01" />
+                            </svg>
+                        </div>
+                        <h3 class="tile__title">Desarrollo web</h3>
+                        <p class="tile__text">
+                            Interfaces y lógica de aplicación en el navegador, de principio a fin
+                            y con atención al detalle.
+                        </p>
+                        <ul class="tags">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </article>
+
+                    <article class="tile" data-reveal style="--d:.16s" data-tilt data-spotlight>
+                        <div class="tile__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5.6" rx="7.8" ry="2.9" />
+                                <path d="M4.2 5.6v6c0 1.6 3.5 2.9 7.8 2.9s7.8-1.3 7.8-2.9v-6" />
+                                <path d="M4.2 11.6v6.2c0 1.6 3.5 2.9 7.8 2.9s7.8-1.3 7.8-2.9v-6.2" />
+                            </svg>
+                        </div>
+                        <h3 class="tile__title">Bases de datos</h3>
+                        <p class="tile__text">
+                            Modelado, consultas y esquemas de datos que sostienen la aplicación
+                            y la mantienen coherente.
+                        </p>
+                        <ul class="tags">
+                            <li>SQL</li>
+                            <li>Modelado</li>
+                            <li>Normalización</li>
+                        </ul>
+                    </article>
+
+                    <article class="tile" data-reveal style="--d:.22s" data-tilt data-spotlight>
+                        <div class="tile__icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2.6 2.8 7.4 12 12.2l9.2-4.8L12 2.6Z" />
+                                <path d="m2.8 16.6 9.2 4.8 9.2-4.8" />
+                                <path d="m2.8 12 9.2 4.8 9.2-4.8" />
+                            </svg>
+                        </div>
+                        <h3 class="tile__title">Arquitectura de software</h3>
+                        <p class="tile__text">
+                            Decisiones de estructura, patrones y mantenibilidad para que el proyecto
+                            siga creciendo sin romperse.
+                        </p>
+                        <ul class="tags">
+                            <li>Patrones</li>
+                            <li>Diseño</li>
+                            <li>Buenas prácticas</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================
+             TRAYECTORIA
+    ========================== -->
+        <section class="section" id="trayectoria">
+            <div class="shell">
+
+                <header class="section__head">
+                    <p class="eyebrow" data-reveal><span class="eyebrow__num">03</span> Trayectoria</p>
+                    <h2 class="section__title" data-reveal style="--d:.06s">
+                        Experiencia y <em>proyectos</em>
+                    </h2>
+                    <p class="section__desc" data-reveal style="--d:.12s">
+                        Una selección del trabajo que he desarrollado durante mi formación.
+                    </p>
+                </header>
+
+                <ol class="timeline" data-timeline>
+                    <li class="timeline__item" data-reveal="left">
+                        <span class="timeline__dot" aria-hidden="true"></span>
+                        <div class="timeline__card" data-spotlight>
+                            <p class="timeline__when">Séptimo semestre · en curso</p>
+                            <h3 class="timeline__title">Ingeniería de Software</h3>
+                            <p class="timeline__text">
+                                Formación en análisis de datos y desarrollo de software, combinando
+                                el trabajo académico con proyectos propios.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="timeline__item" data-reveal="left" style="--d:.08s">
+                        <span class="timeline__dot" aria-hidden="true"></span>
+                        <div class="timeline__card" data-spotlight>
+                            <p class="timeline__when">Desarrollo</p>
+                            <h3 class="timeline__title">Aplicaciones móviles</h3>
+                            <p class="timeline__text">
+                                Construcción de aplicaciones móviles, trabajando en la estructura de
+                                la interfaz y la adaptación entre dispositivos.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="timeline__item" data-reveal="left" style="--d:.16s">
+                        <span class="timeline__dot" aria-hidden="true"></span>
+                        <div class="timeline__card" data-spotlight>
+                            <p class="timeline__when">Desarrollo</p>
+                            <h3 class="timeline__title">Desarrollo web</h3>
+                            <p class="timeline__text">
+                                Soluciones web completas, desde el maquetado y la interacción hasta
+                                la lógica del lado del servidor.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li class="timeline__item" data-reveal="left" style="--d:.24s">
+                        <span class="timeline__dot" aria-hidden="true"></span>
+                        <div class="timeline__card" data-spotlight>
+                            <p class="timeline__when">Datos y diseño</p>
+                            <h3 class="timeline__title">Bases de datos y arquitectura</h3>
+                            <p class="timeline__text">
+                                Modelado de datos y decisiones de arquitectura orientadas a
+                                soluciones mantenibles y bien estructuradas.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             HABILIDADES
+    ========================== -->
+        <section class="section section--alt" id="habilidades">
+            <div class="shell">
+
+                <header class="section__head">
+                    <p class="eyebrow" data-reveal><span class="eyebrow__num">04</span> Habilidades</p>
+                    <h2 class="section__title" data-reveal style="--d:.06s">
+                        Áreas de <em>conocimiento</em>
+                    </h2>
+                    <p class="section__desc" data-reveal style="--d:.12s">
+                        Las tecnologías y disciplinas con las que trabajo y sigo aprendiendo.
+                    </p>
+                </header>
+
+                <ul class="skills">
+                    <li class="skill" data-reveal>
+                        <span class="skill__name">Desarrollo web</span>
+                        <ul class="tags">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Git</li>
+                        </ul>
+                    </li>
+
+                    <li class="skill" data-reveal style="--d:.06s">
+                        <span class="skill__name">Bases de datos y SQL</span>
+                        <ul class="tags">
+                            <li>Consultas</li>
+                            <li>Modelado de datos</li>
+                        </ul>
+                    </li>
+
+                    <li class="skill" data-reveal style="--d:.12s">
+                        <span class="skill__name">Arquitectura de software</span>
+                        <ul class="tags">
+                            <li>Patrones</li>
+                            <li>Diseño de soluciones</li>
+                        </ul>
+                    </li>
+
+                    <li class="skill" data-reveal style="--d:.18s">
+                        <span class="skill__name">Aplicaciones móviles</span>
+                        <ul class="tags">
+                            <li>UI móvil</li>
+                            <li>Diseño adaptable</li>
+                        </ul>
+                    </li>
+
+                    <li class="skill" data-reveal style="--d:.24s">
+                        <span class="skill__name">Análisis de datos</span>
+                        <ul class="tags">
+                            <li>Datos</li>
+                            <li>Métricas</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             CONTACTO
+    ========================== -->
+        <section class="section section--contact" id="contacto">
+            <div class="shell">
+
+                <div class="contact" data-spotlight>
+                    <div class="contact__aura" aria-hidden="true"></div>
+
+                    <div class="contact__body">
+                        <p class="eyebrow" data-reveal><span class="eyebrow__num">05</span> Contacto</p>
+
+                        <h2 class="contact__title" data-reveal style="--d:.06s">
+                            ¿Tienes una idea?<br>
+                            <em>Construyámosla.</em>
+                        </h2>
+
+                        <p class="contact__text" data-reveal style="--d:.12s">
+                            Abierto a proyectos, prácticas y oportunidades donde pueda aportar
+                            y seguir aprendiendo.
+                        </p>
+                    </div>
+
+                    <div class="contact__links">
+                        <a class="contact__mail" href="mailto:luisjquinteroc@gmail.com" data-reveal
+                            style="--d:.18s" data-magnetic>
+                            luisjquinteroc@gmail.com
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 17 17 7M9 7h8v8" />
+                            </svg>
+                        </a>
+
+                        <ul class="socials" data-reveal style="--d:.24s">
+                            <li>
+                                <a href="https://github.com/luisq-dev" target="_blank" rel="noopener noreferrer"
+                                    data-magnetic>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M9 19c-4 1.2-4-2.2-5.6-2.6M15 21v-3.3c0-1 .3-1.6.8-2.1-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.3-3.2 4.3 4.3 0 0 1 .1-3.3s1-.3 3.3 1.3a11.2 11.2 0 0 1 6 0C18.3 2.8 19.3 3 19.3 3a4.3 4.3 0 0 1 .1 3.3 4.7 4.7 0 0 1 1.3 3.3c0 4.5-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2V21" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/luis-j-quintero-48a803342/?isSelfProfile=true"
+                                    target="_blank" rel="noopener noreferrer" data-magnetic>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M7 9.5V20" />
+                                        <path d="M7 6.2v.01" />
+                                        <path d="M11 20v-5.6a3.2 3.2 0 0 1 6.4 0V20" />
+                                        <path d="M11 10.5V20" />
+                                        <rect x="3" y="3" width="18" height="18" rx="4" />
+                                    </svg>
+                                    <span>LinkedIn</span>
+                                </a>
+                            </li>
+                            <!--
+                                Cuando tengas el PDF, vuelve a activar este botón
+                                poniendo el archivo en la raíz del sitio y ajustando
+                                el href. Se deja comentado para no publicar un
+                                enlace vacío que no lleva a ninguna parte.
+
+                            <li>
+                                <a href="curriculum.pdf" target="_blank" rel="noopener noreferrer" data-magnetic>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+                                        <path d="M14 3v5h5" />
+                                    </svg>
+                                    <span>Currículum</span>
+                                </a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         PIE DE PÁGINA
+    ========================== -->
+    <footer class="footer">
+        <div class="shell footer__inner">
+            <p class="footer__copy">
+                © <span data-year>2026</span> Luis Quintero
+            </p>
+            <p class="footer__note">git commit -m "Desplegado con éxito".</p>
+        </div>
+    </footer>
+
+
+    <button class="to-top" type="button" data-to-top aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+    <script src="sound.js"></script>
+
+</body>
+
+</html>
